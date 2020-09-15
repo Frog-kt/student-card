@@ -16,6 +16,10 @@ const errorHandler = require("./middleware/error");
 
 dotenv.config({ path: "./config/config.env" });
 
+// Route files
+const auth = require("./routes/auth");
+const book = require("./routes/book");
+
 const app = express();
 
 // Body parser
@@ -54,6 +58,10 @@ app.use(cors());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
+
+// Mount route
+app.use("/v1/auth", auth);
+app.use("/v1/book", book);
 
 app.use(errorHandler);
 
